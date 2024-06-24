@@ -17,7 +17,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchThreads(10);
+    fetchThreads(0);
   }, []);
 
   return (
