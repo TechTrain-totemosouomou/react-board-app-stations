@@ -1,5 +1,8 @@
+// App.jsx
+
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 function App() {
   const [threads, setThreads] = useState([]);
@@ -19,6 +22,7 @@ function App() {
 
   return (
     <>
+      <Link to="/threads/new">新規スレッド作成</Link>
       <h2>新着スレッド</h2>
       <ul className="threads_list">
         {threads.map(thread => (
