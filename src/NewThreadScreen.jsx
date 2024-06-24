@@ -1,8 +1,9 @@
 // NewThreadScreen.jsx
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NewThreadScreen = () => {
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,6 +21,7 @@ const NewThreadScreen = () => {
       .then(response => response.json())
       .then(data => {
           console.log(data);
+          navigate('/');
       })
       .catch(error => console.error('Error fetching threads:', error));
   };
