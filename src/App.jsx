@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function App() {
+  const navigate = useNavigate();
   const [threads, setThreads] = useState([]);
 
   const fetchThreads = (offset) => {
@@ -26,7 +27,7 @@ function App() {
       <h2>新着スレッド</h2>
       <ul className="threads_list">
         {threads.map(thread => (
-          <li key={thread.id}>
+          <li key={thread.id} onClick={() => navigate(`/threads/${thread.id}`)}>
             {thread.title}
           </li>
         ))}
