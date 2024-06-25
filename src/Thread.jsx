@@ -8,14 +8,20 @@ function Thread() {
   const { id } = useParams();
   const location = useLocation();
   const [posts, setPosts] = useState([]);
+  const [offset, setOffset] = useState(0);
 
-  const fetchPosts = (offset) => {
-    fetch(`https://railway.bulletinboard.techtrain.dev/threads/${id}/posts?offset=${offset}`)
-      .then(response => response.json())
-      .then(data => {
-        setPosts(data.posts);
-      })
-      .catch(error => console.error('Error fetching posts:', error));
+  const fetchPosts = (newOffset) => {
+    if (newOffset >= 0) {
+      fetch(`https://railway.bulletinboard.techtrain.dev/threads/${id}/posts?offset=${newOffset}`)
+        .then(response => response.json())
+        .then(data => {
+          setPosts(data.posts);
+          setOffset(newOffset); // offsetを更新
+        })
+        .catch(error => console.error('Error fetching posts:', error));
+      } else {
+      console.error('Invalid offset value. Please provide a non-negative integer.');
+    }
   };
 
   const handleSubmit = (event) => {
@@ -39,8 +45,11 @@ function Thread() {
   };
 
   useEffect(() => {
-    fetchPosts(0);
-  }, [id]);
+    fetchPosts(offset); // 初回読み込み時にoffsetを指定してスレッドを取得
+  }, [id, offset]);
+
+  const showPreviousButton = offset > 0;
+  const showNextButton = (posts.length > 0 && posts.length == 10);
 
   return (
     <>
@@ -65,6 +74,8 @@ function Thread() {
           <button type="submit">投稿</button>
         </form>
       </div>
+      {showPreviousButton && <button onClick={() => fetchPosts(offset - 10)}>前の10件</button>}
+      {showNextButton && <button onClick={() => fetchPosts(offset + 10)}>次の10件</button>}
     </>
   );
 }
