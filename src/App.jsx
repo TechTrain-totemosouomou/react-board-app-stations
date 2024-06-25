@@ -2,10 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function App() {
-  const navigate = useNavigate();
   const [threads, setThreads] = useState([]);
 
   const fetchThreads = (offset) => {
@@ -23,12 +22,14 @@ function App() {
 
   return (
     <>
-      <Link to="/threads/new">新規スレッド作成</Link>
+      <Link to="/threads/new">スレッドをたてる</Link>
       <h2>新着スレッド</h2>
       <ul className="threads_list">
         {threads.map(thread => (
-          <li key={thread.id} onClick={() => navigate(`/threads/${thread.id}`)}>
-            {thread.title}
+          <li key={thread.id}>
+            <Link to={`/threads/${thread.id}`} state={{ title: thread.title }}>
+              {thread.title}
+            </Link>
           </li>
         ))}
       </ul>

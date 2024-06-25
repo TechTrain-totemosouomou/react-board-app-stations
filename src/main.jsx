@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from './App';
-import NewThreadScreen from './NewThreadScreen';
+import CreateThread from './CreateThread';
 import Thread from './Thread';
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/threads/new",
-    element: <NewThreadScreen />,
+    element: <CreateThread />,
   },
   {
     path: "/threads/:id",

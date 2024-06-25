@@ -1,8 +1,8 @@
-// NewThreadScreen.jsx
+// CreateThread.jsx
 
 import { Link, useNavigate } from 'react-router-dom';
 
-const NewThreadScreen = () => {
+const CreateThread = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -20,16 +20,15 @@ const NewThreadScreen = () => {
       })
       .then(response => response.json())
       .then(data => {
-          console.log(data);
-          navigate('/');
+        navigate('/');
       })
       .catch(error => console.error('Error fetching threads:', error));
   };
 
   return (
     <div>
-      <Link to="/">新着スレッド</Link>
-      <h2>新規スレッド作成</h2>
+      <Link to="/threads/new">スレッドをたてる</Link>
+      <h2>スレッド新規作成</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="body">タイトル:</label>
@@ -37,13 +36,15 @@ const NewThreadScreen = () => {
             type="text"
             id="body"
             name="body"
+            placeholder='スレッドタイトル'
             required
           />
         </div>
+        <Link to="/">Topに戻る</Link>
         <button type="submit">作成</button>
       </form>
     </div>
   );
 };
 
-export default NewThreadScreen;
+export default CreateThread;
