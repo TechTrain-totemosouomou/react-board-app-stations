@@ -31,19 +31,36 @@ function App() {
 
   return (
     <>
-      <Link to="/threads/new">スレッドをたてる</Link>
-      <h2>新着スレッド</h2>
-      <ul className="threads_list">
-        {threads.map(thread => (
-          <li key={thread.id}>
-            <Link to={`/threads/${thread.id}`} state={{ title: thread.title }}>
-              {thread.title}
-            </Link>
+    <header className="app-header">
+      <h1 className="title">Bulletin Board</h1>
+    </header>
+    <main className="threads-section">
+      <h2 className="section-title">Threads</h2>
+      <Link to="/threads/new" className="btn">
+        Create New Thread
+      </Link>
+    </main>
+
+    <ul className="threads-list">
+      {threads.map(thread => (
+        <Link to={`/threads/${thread.id}`} state={{ title: thread.title }}>
+          <li key={thread.id} className="card">
+            {thread.title}
           </li>
-        ))}
-      </ul>
-      {showPreviousButton && <button onClick={() => fetchThreads(offset - 10)}>前の10件</button>}
-      {showNextButton && <button onClick={() => fetchThreads(offset + 10)}>次の10件</button>}
+        </Link>
+      ))}
+    </ul>
+
+    {showPreviousButton && (
+      <button className="page" onClick={() => fetchThreads(offset - 10)}>
+        前の10件
+      </button>
+    )}
+    {showNextButton && (
+      <button className="page" onClick={() => fetchThreads(offset + 10)}>
+        次の10件
+      </button>
+    )}
     </>
   );
 }

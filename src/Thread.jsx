@@ -53,29 +53,51 @@ function Thread() {
 
   return (
     <>
-      <Link to="/threads/new">スレッドをたてる</Link>
-      <h2>{location.state?.title || 'スレッド'}</h2>
-      <ul className="threads_list">
-        {posts.map(post => (
-          <li key={post.id}>
-            {post.post}
-          </li>
-        ))}
-      </ul>
+    <header className="app-header">
+      <h1 className="title">Bulletin Board</h1>
+    </header>
+    <main className="threads-section">
+      <h2 className="section-title">
+        {location.state?.title || 'スレッド'}
+      </h2>
+      <Link to="/" className="btn">
+        Back to Top
+      </Link>
+    </main>
+
+    <ul className="threads-list">
+      {posts.map(post => (
+        <li key={post.id} className="card">
+          {post.post}
+        </li>
+      ))}
+    </ul>
+
+    <form onSubmit={handleSubmit} className="form">
       <div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <textarea
-              name="post"
-              placeholder='投稿しよう！'
-              required
-            />
-          </div>
-          <button type="submit">投稿</button>
-        </form>
+        <label htmlFor="post">text:</label>
+        <input
+          className="input-text"
+          type="text"
+          id="post"
+          name="post"
+          placeholder="Write a new post..."
+          required
+        />
       </div>
-      {showPreviousButton && <button onClick={() => fetchPosts(offset - 10)}>前の10件</button>}
-      {showNextButton && <button onClick={() => fetchPosts(offset + 10)}>次の10件</button>}
+      <button className="input-btn" type="submit">Post</button>
+    </form>
+
+    {showPreviousButton && (
+      <button className="page" onClick={() => fetchPosts(offset - 10)}>
+        前の10件
+      </button>
+    )}
+    {showNextButton && (
+      <button className="page" onClick={() => fetchPosts(offset + 10)}>
+        次の10件
+      </button>
+    )}
     </>
   );
 }
