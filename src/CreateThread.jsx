@@ -26,24 +26,32 @@ const CreateThread = () => {
   };
 
   return (
-    <div>
-      <Link to="/threads/new">スレッドをたてる</Link>
-      <h2>スレッド新規作成</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="body">タイトル:</label>
-          <input
-            type="text"
-            id="body"
-            name="body"
-            placeholder='スレッドタイトル'
-            required
-          />
-        </div>
-        <Link to="/">Topに戻る</Link>
-        <button type="submit">作成</button>
-      </form>
-    </div>
+    <>
+    <header className="app-header">
+      <h1 className="title">Bulletin Board</h1>
+    </header>
+    <main className="threads-section">
+      <h2 className="section-title">Create New Thread</h2>
+      <Link to="/" className="btn">
+        Back to Top
+      </Link>
+    </main>
+
+    <form onSubmit={handleSubmit} className="form">
+      <div>
+        <label htmlFor="body">text:</label>
+        <input
+          className="input-text"
+          type="text"
+          id="body"
+          name="body"
+          placeholder="Thread Title"
+          required
+        />
+      </div>
+      <button className="input-btn" type="submit">Create Thread</button>
+    </form>
+    </>
   );
 };
 
