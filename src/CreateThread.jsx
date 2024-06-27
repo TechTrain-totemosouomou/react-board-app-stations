@@ -33,7 +33,8 @@ const CreateThread = () => {
     <main className="threads-section">
       <h2 className="section-title">Create New Thread</h2>
       <Link to="/" className="btn">
-        Back to Top
+        <span className="btn-text-default">→　Back to Top</span>
+        <span className="btn-text-hover">Back to Top</span>
       </Link>
     </main>
 

@@ -37,7 +37,8 @@ function App() {
     <main className="threads-section">
       <h2 className="section-title">Threads</h2>
       <Link to="/threads/new" className="btn">
-        Create New Thread
+        <span className="btn-text-default">→　Create New Thread</span>
+        <span className="btn-text-hover">Create New Thread</span>
       </Link>
     </main>
 
