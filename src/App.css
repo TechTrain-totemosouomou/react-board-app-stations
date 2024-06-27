@@ -31,7 +31,34 @@
   border-radius: 0.25rem;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  position: relative;
+  border-bottom: 1px solid #2c5282;
+
+  .btn-text-default {
+    display: inline-block;
+    position: relative;
+    opacity: 1;
+  }
+
+  .btn-text-hover {
+    display: none;
+    position: relative;
+    opacity: 0;
+  }
+
+  &:hover {
+    .btn-text-default {
+      display: none;
+      position: relative;
+      opacity: 0;
+    }
+
+    .btn-text-hover {
+      display: inline-block;
+      position: relative;
+      opacity: 1;
+    }
+  }
 }
 
 .btn:hover {

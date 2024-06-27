@@ -61,17 +61,10 @@ function Thread() {
         {location.state?.title || 'スレッド'}
       </h2>
       <Link to="/" className="btn">
-        Back to Top
+        <span className="btn-text-default">→　Back to Top</span>
+        <span className="btn-text-hover">Back to Top</span>
       </Link>
     </main>
-
-    <ul className="threads-list">
-      {posts.map(post => (
-        <li key={post.id} className="card">
-          {post.post}
-        </li>
-      ))}
-    </ul>
 
     <form onSubmit={handleSubmit} className="form">
       <div>
@@ -87,6 +80,14 @@ function Thread() {
       </div>
       <button className="input-btn" type="submit">Post</button>
     </form>
+
+    <ul className="threads-list">
+      {posts.map(post => (
+        <li key={post.id} className="card">
+          {post.post}
+        </li>
+      ))}
+    </ul>
 
     {showPreviousButton && (
       <button className="page" onClick={() => fetchPosts(offset - 10)}>
